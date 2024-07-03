@@ -11,10 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 
-app.get('/file/:filename', (req, res) => {
+app.get('/files/:filename', (req, res) => {
 
-    fs.readFile(`./files/${req.params.filename}`,"utf-8",function(err,data){
-       res.render('show');
+    fs.readFile(`./files/${req.params.filename}`,"utf-8",function(err,filedata){
+       res.render('show',{filename:req.params.filename,filedata:filedata});
     })
 });
 
