@@ -58,16 +58,32 @@ function testFilesDirectoryExists() {
 // Test 4: Check package.json has required dependencies
 function testDependencies() {
     const packageJsonPath = path.join(__dirname, 'package.json');
-    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
     
-    const requiredDeps = ['express', 'ejs'];
-    const missingDeps = requiredDeps.filter(dep => !packageJson.dependencies[dep]);
-    
-    if (missingDeps.length === 0) {
-        console.log('✅ Test 4 PASSED: All required dependencies present');
-        return true;
-    } else {
-        console.log(`❌ Test 4 FAILED: Missing dependencies: ${missingDeps.join(', ')}`);
+    try {
+        if (!fs.existsSync(packageJsonPath)) {
+            console.log('❌ Test 4 FAILED: package.json file not found');
+            return false;
+        }
+        
+        const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+        
+        if (!packageJson.dependencies || typeof packageJson.dependencies !== 'object') {
+            console.log('❌ Test 4 FAILED: No dependencies defined in package.json');
+            return false;
+        }
+        
+        const requiredDeps = ['express', 'ejs'];
+        const missingDeps = requiredDeps.filter(dep => !packageJson.dependencies[dep]);
+        
+        if (missingDeps.length === 0) {
+            console.log('✅ Test 4 PASSED: All required dependencies present');
+            return true;
+        } else {
+            console.log(`❌ Test 4 FAILED: Missing dependencies: ${missingDeps.join(', ')}`);
+            return false;
+        }
+    } catch (error) {
+        console.log(`❌ Test 4 FAILED: Error reading package.json: ${error.message}`);
         return false;
     }
 }
