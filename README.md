@@ -80,6 +80,7 @@ Notepad-with-backend/
 ├── files/              # Storage for note files
 ├── node_modules/       # Dependencies
 ├── public/             # Static files (JS, CSS)
+│   ├── theme.css       # Theme CSS variables
 │   └── theme.js        # Theme toggle functionality
 ├── views/              # EJS templates
 │   ├── index.ejs       # Home page

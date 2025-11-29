@@ -1,0 +1,23 @@
+/* Dark mode (default) */
+:root, .dark-mode {
+    --bg-primary: #18181b;
+    --bg-secondary: #27272a;
+    --bg-tertiary: #52525b;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+}
+
+/* Light mode */
+.light-mode {
+    --bg-primary: #f4f4f5;
+    --bg-secondary: #e4e4e7;
+    --bg-tertiary: #d4d4d8;
+    --text-primary: #18181b;
+    --text-secondary: #52525b;
+}
+
+.main-bg { background-color: var(--bg-primary); }
+.secondary-bg { background-color: var(--bg-secondary); }
+.tertiary-bg { background-color: var(--bg-tertiary); }
+.primary-text { color: var(--text-primary); }
+.secondary-text { color: var(--text-secondary); }
