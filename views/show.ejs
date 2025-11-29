@@ -3,15 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>View - Notepad</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Dark mode (default) */
+        :root, .dark-mode {
+            --bg-primary: #18181b;
+            --bg-secondary: #27272a;
+            --bg-tertiary: #52525b;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+        }
+        /* Light mode */
+        .light-mode {
+            --bg-primary: #f4f4f5;
+            --bg-secondary: #e4e4e7;
+            --bg-tertiary: #d4d4d8;
+            --text-primary: #18181b;
+            --text-secondary: #52525b;
+        }
+        .main-bg { background-color: var(--bg-primary); }
+        .secondary-bg { background-color: var(--bg-secondary); }
+        .tertiary-bg { background-color: var(--bg-tertiary); }
+        .primary-text { color: var(--text-primary); }
+        .secondary-text { color: var(--text-secondary); }
+    </style>
+    <script src="/theme.js"></script>
 </head>
 <body>
-    <div class="main text-white w-full min-h-screen bg-zinc-900">
-        <a class="text-blue-500 inline-block mb-10" href="/">Go back to home</a>
+    <div class="main primary-text w-full min-h-screen main-bg p-4">
+        <div class="flex justify-between items-center mb-10">
+            <a class="text-blue-500 inline-block hover:text-blue-400" href="/">Go back to home</a>
+            <button id="theme-toggle" class="secondary-bg primary-text px-4 py-2 rounded-md hover:opacity-80 transition-opacity">
+                ☀️ Light Mode
+            </button>
+        </div>
         <h1 class="text-3xl tracking-tighter"><%= filename %></h1>
-        <p class="text-xl mt-2"><%= filedata %></p>
-
+        <p class="text-xl mt-2 secondary-text"><%= filedata %></p>
     </div>
 </body>
 </html>
